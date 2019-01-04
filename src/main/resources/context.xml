@@ -10,10 +10,15 @@
 
 	<!-- The below tag is for Annotation - Comment Bean tags to use Annotation -->
 	<!-- <context:component-scan base-package="com.capgemini.app"/> -->
-
-
+			
 	<bean id="organization"
 		class="com.capgemini.app.bean.Organization">
+	<!-- 	<property name="ipAddresses" value="${ipAddress1}" /> -->
+	
+		<property name="ipAddresses">
+			<util:properties location="classpath:ipAddress.properties"/>
+		</property>
+		
 		<property name="boardMembers">
 			<util:list>
 				<value>Ahilya</value>
@@ -48,24 +53,20 @@
 				<value>Hydrabad</value>
 			</util:set>
 		</property>
-
-		<!-- <bean id="dateFormater" class="java.text.SimpleDateFormat"> <constructor-arg 
-			value="dd-MM-yyyy" /> </bean> <property name="dateOfEstablishment"> <bean 
-			factory-bean="dateFormater" factory-method="parse"> <constructor-arg value="23-03-1982" 
-			/> </bean> </property> -->
-		<property name="dateOfEstablishment">
+		<!-- <property name="dateOfEstablishment">
 			<bean class="java.time.LocalDate" factory-method="now">
 			</bean>
-		</property>
-		
-		<!-- <property name="ipAddresses" ref="ip"></property> -->
+		</property> -->
 		
 	
+			<property name="dateOfEstablishment">
+			<bean class="java.time.LocalDate" factory-method ="parse" >
+			<constructor-arg value="1988-08-28"/>
+			</bean>
+		</property>
 
-		<property name="ipAddresses" value="classpath:${ipAddress}" />
 
-		
-		
+
 		<property name="listed">
 			<value>true</value>
 		</property>
